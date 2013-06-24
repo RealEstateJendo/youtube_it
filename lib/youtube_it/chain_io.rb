@@ -57,7 +57,7 @@ end
 # Net::HTTP only can send chunks of 1024 bytes. This is very inefficient, so we have a spare IO that will send more when asked for 1024.
 # We use delegation because the read call is recursive.
 class YouTubeIt::GreedyChainIO < DelegateClass(YouTubeIt::ChainIO)
-  BIG_CHUNK = 512 * 1024 # 500 kb
+  BIG_CHUNK = 1048576 * 1024 # 500 kb
   
   def initialize(*with_ios)
     __setobj__(YouTubeIt::ChainIO.new(with_ios))
